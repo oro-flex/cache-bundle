@@ -3,6 +3,7 @@
 namespace Oro\Bundle\CacheBundle;
 
 use Oro\Bundle\CacheBundle\DependencyInjection\Compiler\CacheConfigurationPass;
+use Oro\Bundle\CacheBundle\DependencyInjection\Compiler\RemoveOrphanServicesPass;
 use Oro\Bundle\CacheBundle\DependencyInjection\Compiler\ValidateCacheConfigurationPass;
 use Symfony\Component\DependencyInjection\Compiler\PassConfig;
 use Symfony\Component\DependencyInjection\ContainerBuilder;
@@ -22,5 +23,6 @@ class OroCacheBundle extends Bundle
 
         $container->addCompilerPass(new CacheConfigurationPass());
         $container->addCompilerPass(new ValidateCacheConfigurationPass(), PassConfig::TYPE_BEFORE_REMOVING);
+        $container->addCompilerPass(new RemoveOrphanServicesPass(), PassConfig::TYPE_BEFORE_OPTIMIZATION, PHP_INT_MAX);
     }
 }
