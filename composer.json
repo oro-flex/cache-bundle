@@ -16,9 +16,8 @@
     "require": {
         "php": "~7.4.14 || ~8.0.0",
         "oro-flex/config": "4.2.*",
-        "symfony/serializer": "~4.4.24"
-    },
-    "require-dev": {
+        "symfony/serializer": "~4.4.24",
+        "doctrine/cache": "^1.11 || ^2.0"
     },
     "conflict": {
         "oro/platform": "*"

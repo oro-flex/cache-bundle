@@ -21,7 +21,10 @@ class OroCacheBundle extends Bundle
     {
         parent::build($container);
 
-        $container->addCompilerPass(new CacheConfigurationPass());
+        // Should be right after Symfony's
+        // $container->addCompilerPass(new CachePoolPass(), PassConfig::TYPE_BEFORE_OPTIMIZATION, 32);
+        // @see \Symfony\Bundle\FrameworkBundle\FrameworkBundle::build
+        $container->addCompilerPass(new CacheConfigurationPass(), PassConfig::TYPE_BEFORE_OPTIMIZATION, 31);
         $container->addCompilerPass(new ValidateCacheConfigurationPass(), PassConfig::TYPE_BEFORE_REMOVING);
         $container->addCompilerPass(new RemoveOrphanServicesPass(), PassConfig::TYPE_BEFORE_OPTIMIZATION, PHP_INT_MAX);
     }
